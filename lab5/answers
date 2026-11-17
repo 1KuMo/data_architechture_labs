@@ -1,0 +1,155 @@
+PART 1
+1.
+the HTTP status code returned is 200 (HTTP/2 200)
+the value of the content type header is : ```application/json; charset=utf-8```
+
+2.
+the HTTP status code returned is 404 (HTTP/2 404)
+This error is critical because it displays that the http request succeed, so the pipeline will use unvalid data into it's architechture and may cause huge issues.
+
+3.
+the HTTP code that confirms resource creation is 201.
+
+
+PART 3 
+
+(venv) [toadmini@toadmini lab5]$ curl -i http://localhost:8080/frontend_feed.json
+HTTP/1.0 200 OK
+Server: SimpleHTTP/0.6 Python/3.14.9
+Date: Tue, 17 Nov 2026 10:05:03 GMT
+Content-type: application/json
+Content-Length: 1991
+Last-Modified: Tue, 17 Nov 2026 10:02:14 GMT
+
+[
+  {
+    "task_id": 1,
+    "label": "delectus aut autem",
+    "is_done": false
+  },
+  {
+    "task_id": 2,
+    "label": "quis ut nam facilis et officia qui",
+    "is_done": false
+  },
+  {
+    "task_id": 3,
+    "label": "fugiat veniam minus",
+    "is_done": false
+  },
+  {
+    "task_id": 4,
+    "label": "et porro tempora",
+    "is_done": true
+  },
+  {
+    "task_id": 5,
+    "label": "laboriosam mollitia et enim quasi adipisci quia provident illum",
+    "is_done": false
+  },
+  {
+    "task_id": 6,
+    "label": "qui ullam ratione quibusdam voluptatem quia omnis",
+    "is_done": false
+  },
+  {
+    "task_id": 7,
+    "label": "illo expedita consequatur quia in",
+    "is_done": false
+  },
+  {
+    "task_id": 8,
+    "label": "quo adipisci enim quam ut ab",
+    "is_done": true
+  },
+  {
+    "task_id": 9,
+    "label": "molestiae perspiciatis ipsa",
+    "is_done": false
+  },
+  {
+    "task_id": 10,
+    "label": "illo est ratione doloremque quia maiores aut",
+    "is_done": true
+  },
+  {
+    "task_id": 11,
+    "label": "vero rerum temporibus dolor",
+    "is_done": true
+  },
+  {
+    "task_id": 12,
+    "label": "ipsa repellendus fugit nisi",
+    "is_done": true
+  },
+  {
+    "task_id": 13,
+    "label": "et doloremque nulla",
+    "is_done": false
+  },
+  {
+    "task_id": 14,
+    "label": "repellendus sunt dolores architecto voluptatum",
+    "is_done": true
+  },
+  {
+    "task_id": 15,
+    "label": "ab voluptatum amet voluptas",
+    "is_done": true
+  },
+  {
+    "task_id": 16,
+    "label": "accusamus eos facilis sint et aut voluptatem",
+    "is_done": true
+  },
+  {
+    "task_id": 17,
+    "label": "quo laboriosam deleniti aut qui",
+    "is_done": true
+  },
+  {
+    "task_id": 18,
+    "label": "dolorum est consequatur ea mollitia in culpa",
+    "is_done": false
+  },
+  {
+    "task_id": 19,
+    "label": "molestiae ipsa aut voluptatibus pariatur dolor nihil",
+    "is_done": true
+  },
+  {
+    "task_id": 20,
+    "label": "ullam nobis libero sapiente ad optio sint",
+    "is_done": true
+  }
+](venv) [toadmini@toadmini lab5]$ curl -s http://localhost:8080/frontend_feed.json | python3 -m json.tool | head -n 20
+[
+    {
+        "task_id": 1,
+        "label": "delectus aut autem",
+        "is_done": false
+    },
+    {
+        "task_id": 2,
+        "label": "quis ut nam facilis et officia qui",
+        "is_done": false
+    },
+    {
+        "task_id": 3,
+        "label": "fugiat veniam minus",
+        "is_done": false
+    },
+    {
+        "task_id": 4,
+        "label": "et porro tempora",
+        "is_done": true
+(venv) [toadmini@toadmini lab5]$ 
+
+
+SECOND TERMINAL : 
+
+[toadmini@toadmini ~]$ cd vscode/python/labs/lab5/
+[toadmini@toadmini lab5]$ python3 -m http.server 8080
+Serving HTTP on 0.0.0.0 port 8080 (http://0.0.0.0:8080/) ...
+127.0.0.1 - - [17/Nov/2026 11:05:03] "GET /frontend_feed.json HTTP/1.1" 200 -
+127.0.0.1 - - [17/Nov/2026 11:05:21] "GET /frontend_feed.json HTTP/1.1" 200 -
